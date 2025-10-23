@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 import AboutUs from "./AboutUs";
 import ServicesSection from "./ServicesSection";
 import Accomadation from "./Accomadation"; 
@@ -9,6 +10,7 @@ import Footer from "./Footer";
 import heroBg from "../assets/hero.png";  
 import logo from "../assets/logo.png";   
 import { FaFacebookF, FaInstagram, FaYoutube, FaBars, FaTimes } from "react-icons/fa";
+import { FadeInUp, StaggerContainer, StaggerItem } from "./ScrollAnimations";
 
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,17 +18,21 @@ const Home = () => {
   return (
     <div className="w-full">
       {/* ===== HERO SECTION ===== */}
-   <div
-  className="relative min-h-[85vh] lg:min-h-[105vh] w-full bg-center bg-no-repeat bg-cover overflow-hidden"
-  style={{ backgroundImage: `url(${heroBg})` }}
->
-
+      <div
+        className="relative min-h-[85vh] lg:min-h-[105vh] w-full bg-center bg-no-repeat bg-cover overflow-hidden"
+        style={{ backgroundImage: `url(${heroBg})` }}
+      >
         {/* Overlay */}
         <div className="absolute inset-0 bg-black/40"></div>
 
         {/* ===== NAVBAR ===== */}
         <nav className="absolute top-0 left-0 w-full z-30">
-          <div className="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-4 lg:py-6">
+          <motion.div 
+            initial={{ opacity: 0, y: -50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="flex items-center justify-between px-4 sm:px-6 lg:px-10 py-4 lg:py-6"
+          >
             {/* Logo - Responsive sizing */}
             <div className="flex items-center space-x-3">
               <img 
@@ -67,7 +73,7 @@ const Home = () => {
             >
               <FaBars />
             </button>
-          </div>
+          </motion.div>
         </nav>
 
         {/* ===== MOBILE SIDEBAR ===== */}
@@ -109,20 +115,42 @@ const Home = () => {
           </div>
         </div>
 
-        {/* ===== HERO CONTENT - RESPONSIVE ===== */}
+        {/* ===== HERO CONTENT - RESPONSIVE WITH ANIMATIONS ===== */}
         <div className="relative z-10 flex flex-col justify-center h-full text-left px-4 sm:px-6 md:px-8 lg:px-10 xl:px-16 pt-32 sm:pt-40 md:pt-48 lg:pt-60 max-w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl text-white">
-          <h2 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold mb-2">
+          <motion.h2 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-semibold mb-2"
+          >
             Your Gateway to Epic
-          </h2>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-extrabold leading-tight mb-3 sm:mb-4">
+          </motion.h2>
+
+          <motion.h1 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-extrabold leading-tight mb-3 sm:mb-4"
+          >
             MOUNTAIN<br />ADVENTURES
-          </h1>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-6 sm:mb-8 max-w-xs sm:max-w-md lg:max-w-lg leading-relaxed">
+          </motion.h1>
+
+          <motion.p 
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl mb-6 sm:mb-8 max-w-xs sm:max-w-md lg:max-w-lg leading-relaxed"
+          >
             Bikers Corner Pakistan stands as the premier off-road mountain motorbiking experts
             in the Gilgit-Baltistan region, renowned for its unparalleled experience.
-          </p>
+          </motion.p>
 
-          <div className="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.9 }}
+            className="flex flex-col sm:flex-row sm:space-x-4 space-y-3 sm:space-y-0"
+          >
             <button className="bg-indigo-700 hover:bg-indigo-800 text-white px-6 sm:px-8 lg:px-10 py-2.5 sm:py-3 rounded-md font-semibold transition text-sm sm:text-base">
               CONTACT US
             </button>
@@ -130,49 +158,57 @@ const Home = () => {
               <span>LEARN MORE</span>
               <span>→</span>
             </button>
-          </div>
+          </motion.div>
         </div>
       </div>
 
-      {/* ===== FEATURES SECTION - RESPONSIVE ===== */}
+      {/* ===== FEATURES SECTION - RESPONSIVE WITH STAGGER ANIMATION ===== */}
       <section className="bg-[#2F3079] py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 flex flex-col items-center justify-center">
-        <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
-          
-          {/* CARD 1 */}
-        <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-center shadow-xl transform transition duration-300 hover:-translate-y-2 hover:bg-[#2F3079] hover:text-white cursor-pointer group border-2 border-transparent hover:border-white">
-  <div className="flex justify-center mb-4 sm:mb-6 text-indigo-900 group-hover:text-white text-3xl sm:text-4xl lg:text-5xl transition">
-    <i className="fas fa-user-cog"></i>
-  </div>
-  <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold mb-2 sm:mb-3">
-    Pro Team
-  </h3>
-  <p className="text-gray-700 group-hover:text-white text-xs sm:text-sm lg:text-base transition">
-    Experienced Guides with Years of Expertise
-  </p>
-</div>
+        <StaggerContainer staggerDelay={0.2}>
+          <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+            
+            {/* CARD 1 */}
+            <StaggerItem>
+              <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-center shadow-xl transform transition duration-300 hover:-translate-y-2 hover:bg-[#2F3079] hover:text-white cursor-pointer group border-2 border-transparent hover:border-white">
+                <div className="flex justify-center mb-4 sm:mb-6 text-indigo-900 group-hover:text-white text-3xl sm:text-4xl lg:text-5xl transition">
+                  <i className="fas fa-user-cog"></i>
+                </div>
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold mb-2 sm:mb-3">
+                  Pro Team
+                </h3>
+                <p className="text-gray-700 group-hover:text-white text-xs sm:text-sm lg:text-base transition">
+                  Experienced Guides with Years of Expertise
+                </p>
+              </div>
+            </StaggerItem>
 
-          {/* CARD 2 */}
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-center shadow-xl transform transition duration-300 hover:-translate-y-2 hover:bg-[#2F3079] hover:text-white cursor-pointer group border-2 border-transparent hover:border-white">
-            <div className="flex justify-center mb-4 sm:mb-6 text-indigo-900 group-hover:text-white text-3xl sm:text-4xl lg:text-5xl transition">
-              <i className="fas fa-award"></i>
-            </div>
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold mb-2 sm:mb-3">Best Awards</h3>
-            <p className="text-gray-700 group-hover:text-white text-xs sm:text-sm lg:text-base transition">
-              Recognized for Excellence in Adventure Tourism
-            </p>
-          </div>
+            {/* CARD 2 */}
+            <StaggerItem>
+              <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-center shadow-xl transform transition duration-300 hover:-translate-y-2 hover:bg-[#2F3079] hover:text-white cursor-pointer group border-2 border-transparent hover:border-white">
+                <div className="flex justify-center mb-4 sm:mb-6 text-indigo-900 group-hover:text-white text-3xl sm:text-4xl lg:text-5xl transition">
+                  <i className="fas fa-award"></i>
+                </div>
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold mb-2 sm:mb-3">Best Awards</h3>
+                <p className="text-gray-700 group-hover:text-white text-xs sm:text-sm lg:text-base transition">
+                  Recognized for Excellence in Adventure Tourism
+                </p>
+              </div>
+            </StaggerItem>
 
-          {/* CARD 3 */}
-          <div className="bg-[#2F3079] text-white border-2 border-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-center shadow-xl transform transition duration-300 hover:-translate-y-2 hover:bg-white hover:text-black cursor-pointer sm:col-span-2 lg:col-span-1 group">
-            <div className="flex justify-center mb-4 sm:mb-6 text-3xl sm:text-4xl lg:text-5xl transition">
-              <i className="fas fa-motorcycle"></i>
-            </div>
-            <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold mb-2 sm:mb-3">Best Design</h3>
-            <p className="text-xs sm:text-sm lg:text-base">
-              Tailored Adventures with Premium Features.
-            </p>
+            {/* CARD 3 */}
+            <StaggerItem>
+              <div className="bg-[#2F3079] text-white border-2 border-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 lg:p-10 text-center shadow-xl transform transition duration-300 hover:-translate-y-2 hover:bg-white hover:text-black cursor-pointer sm:col-span-2 lg:col-span-1 group">
+                <div className="flex justify-center mb-4 sm:mb-6 text-3xl sm:text-4xl lg:text-5xl transition">
+                  <i className="fas fa-motorcycle"></i>
+                </div>
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-extrabold mb-2 sm:mb-3">Best Design</h3>
+                <p className="text-xs sm:text-sm lg:text-base">
+                  Tailored Adventures with Premium Features.
+                </p>
+              </div>
+            </StaggerItem>
           </div>
-        </div>
+        </StaggerContainer>
       </section>
 
       {/* ===== OTHER SECTIONS ===== */}
